@@ -13,6 +13,11 @@ const maxGuesses = 6;
 const resetGame = () => {
   correctLetters = [];
   wrongGuessCount = 0;
+  hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
+  guessesText.innerHTML = `${wrongGuessCount}/ ${maxGuesses}`;
+  keyboardDiv
+    .querySelectorAll("button")
+    .forEach((btn) => (btn.disabled = false));
   wordDisplay.innerHTML = word
     .split("")
     .map(() => `<li class="letter"></li>`)
