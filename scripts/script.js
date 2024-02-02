@@ -3,11 +3,22 @@ const wordDisplay = document.querySelector(".word-display");
 const guessesText = document.querySelector(".guesses-text b");
 const keyboardDiv = document.querySelector(".keyboard");
 const gameModal = document.querySelector(".game-modal");
+const playAgainBtn = document.querySelector(".play-again");
 
 let currentWord,
   wrongGuessCount = 0,
   correctLetters = [];
 const maxGuesses = 6;
+
+const resetGame = () => {
+  correctLetters = [];
+  wrongGuessCount = 0;
+  wordDisplay.innerHTML = word
+    .split("")
+    .map(() => `<li class="letter"></li>`)
+    .join("");
+  gameModal.classList.remove("show");
+};
 
 const getRandomWord = () => {
   // selecting a random word and hint from the wordlist
@@ -15,6 +26,7 @@ const getRandomWord = () => {
   currentWord = word;
   console.log(word);
   document.querySelector(".hint-text b").innerHTML = hint;
+  resetGame();
   wordDisplay.innerHTML = word
     .split("")
     .map(() => `<li class="letter"></li>`)
@@ -78,3 +90,4 @@ for (let i = 97; i <= 122; i++) {
 }
 
 getRandomWord();
+playAgainBtn.addEventListener("click", getRandomWord);
