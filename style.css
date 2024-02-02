@@ -162,6 +162,7 @@ body {
     max-width: 200px;
   }
   .hangman-box h1 {
-    display: none;
+    /* display: flex; */
+    justify-content: center;
   }
 }

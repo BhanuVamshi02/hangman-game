@@ -19,7 +19,7 @@ const resetGame = () => {
   keyboardDiv
     .querySelectorAll("button")
     .forEach((btn) => (btn.disabled = false));
-  wordDisplay.innerHTML = word
+  wordDisplay.innerHTML = currentWord
     .split("")
     .map(() => `<li class="letter"></li>`)
     .join("");
