@@ -2,9 +2,11 @@ const hangmanImage = document.querySelector(".hangman-box img");
 const wordDisplay = document.querySelector(".word-display");
 const guessesText = document.querySelector(".guesses-text b");
 const keyboardDiv = document.querySelector(".keyboard");
+const gameModal = document.querySelector(".game-modal");
 
 let currentWord,
-  wrongGuessCount = 0;
+  wrongGuessCount = 0,
+  correctLetters = [];
 const maxGuesses = 6;
 
 const getRandomWord = () => {
@@ -19,6 +21,22 @@ const getRandomWord = () => {
     .join("");
 };
 
+const gameOver = (isVictory) => {
+  setTimeout(() => {
+    const modalText = isVictory
+      ? `You found the word`
+      : `The correct word was:`;
+    gameModal.querySelector("img").src = `images/${
+      isVictory ? "victory" : "lost"
+    }.gif`;
+    gameModal.querySelector("h4").src = `${isVictory ? "victory" : "lost"}.gif`;
+    gameModal.querySelector("img").src = `images/${
+      isVictory ? "victory" : "lost"
+    }.gif`;
+    gameModal.classList.add("show");
+  }, 300);
+};
+
 const initGame = (button, clickedLetter) => {
   // Checking if clickedLetter exists in the currentWord
   if (currentWord.includes(clickedLetter)) {
@@ -27,6 +45,7 @@ const initGame = (button, clickedLetter) => {
 
     [...currentWord].forEach((letter, index) => {
       if (letter === clickedLetter) {
+        correctLetters.push(letter);
         // Use index to access the correct li element
         letterElements[index].innerHTML = letter;
         letterElements[index].classList.add("guessed");
@@ -40,6 +59,9 @@ const initGame = (button, clickedLetter) => {
   //disabling the button if same button is clicked more than 1
   button.disabled = true;
   guessesText.innerHTML = `${wrongGuessCount}/ ${maxGuesses}`;
+
+  if (wrongGuessCount === maxGuesses) return gameOver(false);
+  if (correctLetters.length === currentWord.length) return gameOver(true);
 };
 
 //creating keyboard buttons and adding event listeners
