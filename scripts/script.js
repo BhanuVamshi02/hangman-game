@@ -1,3 +1,4 @@
+const hangmanImage = document.querySelector(".hangman-box img");
 const wordDisplay = document.querySelector(".word-display");
 const guessesText = document.querySelector(".guesses-text b");
 const keyboardDiv = document.querySelector(".keyboard");
@@ -32,8 +33,12 @@ const initGame = (button, clickedLetter) => {
       }
     });
   } else {
+    // showing wrongGuessCount and image on wrong  guess
     wrongGuessCount++;
+    hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
   }
+  //disabling the button if same button is clicked more than 1
+  button.disabled = true;
   guessesText.innerHTML = `${wrongGuessCount}/ ${maxGuesses}`;
 };
 
