@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #5e63ba;
+}
+
+.container {
+  width: 850px;
+  background: white;
+  display: flex;
+  gap: 70px;
+  align-items: flex-end;
+  padding: 60px 40px;
+  border-radius: 10px;
+}
+
+.hangman-box img {
+  max-width: 270px;
+}
