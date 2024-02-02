@@ -22,6 +22,7 @@ const getRandomWord = () => {
 };
 
 const gameOver = (isVictory) => {
+  // After completion of game showing modal after 300ms
   setTimeout(() => {
     const modalText = isVictory
       ? `You found the word`
