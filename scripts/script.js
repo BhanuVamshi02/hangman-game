@@ -29,10 +29,12 @@ const gameOver = (isVictory) => {
     gameModal.querySelector("img").src = `images/${
       isVictory ? "victory" : "lost"
     }.gif`;
-    gameModal.querySelector("h4").src = `${
+    gameModal.querySelector("h4").innerText = `${
       isVictory ? "Congrats!" : "Game Over!"
     }`;
-    gameModal.querySelector("img").src = `${modalText}`;
+    gameModal.querySelector(
+      "p"
+    ).innerHTML = `${modalText} <b> ${currentWord}</b>`;
     gameModal.classList.add("show");
   }, 300);
 };
